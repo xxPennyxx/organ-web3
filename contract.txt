@@ -4,30 +4,63 @@ pragma solidity ^0.8.0;
 contract OrganDonation {
     address public admin; // The contract administrator
 
+    struct User {
+    address donorAddress;
+    string name;
+    string email;
+    string createpwd;
+    string confirmpwd;
+    uint256 aadhaar;
+    uint256 phone;
+    uint256 dob;
+    string imgURL;
+    string addr1;
+    string addr2;
+    string city;
+    string state;
+    string country;
+    uint256 pincode;
+    string hospital;
+    string hospaddr;
+    uint256 hospphno;
+    string bloodgrp;
+    string history_father;
+    string history_mother;
+    string history_sibling;
+    string hosprep;
+    string[] donate;
+    string[] donatedeath;
+    string[] misc;
+}
+
     struct Donor {
-        address donorAddress;
-        string name;
-        string bloodGroup;
-        // Add more donor-related fields here
-    }
+    string name;
+    uint256 age;
+    uint256 dod;
+    string deceased;
+    string cause;
+    uint256 pincode;
+    uint256 donorno;
+    string hospital;
+    string hospaddr;
+    uint256 hospphno;
+    string bloodgrp;
+    string history_father;
+    string history_mother;
+    string history_sibling;
+    string tissuetype;
+    string diseases;
+    string heirname;
+    uint256 heirphno;
+    string[] donatedeath;
+    string[] donate;
+    string details;
+    string storage1;
+}
 
-    struct Recipient {
-        address recipientAddress;
-        string name;
-        string bloodGroup;
-        // Add more recipient-related fields here
-    }
-
-    struct Donation {
-        address donorAddress;
-        address recipientAddress;
-        string organ;
-        // Add more donation-related fields here
-    }
 
     Donor[] public donors;
-    Recipient[] public recipients;
-    Donation[] public donations;
+    User[] public users;
 
     constructor() {
         admin = msg.sender;
@@ -37,51 +70,66 @@ contract OrganDonation {
         require(msg.sender == admin, "Only the administrator can call this function");
         _;
     }
+    event UserRegistered(address userAddress, string name, string email);
 
-    function registerDonor(string memory _name, string memory _bloodGroup) public {
-        donors.push(Donor({
+
+    function registerUser
+    (
+        string memory _name,
+        string memory _email,
+        string memory _createpwd,
+        string memory _confirmpwd,
+        uint256 _aadhaar,
+        uint256 _phone,
+        uint256 _dob,
+        string memory _imgURL,
+        string memory _addr1,
+        string memory _addr2,
+        string memory _city,
+        string memory _state,
+        string memory _country,
+        uint256 _pincode,
+        string memory _hospital,
+        string memory _hospaddr,
+        uint256 _hospphno,
+        string memory _bloodgrp,
+        string memory _history_father,
+        string memory _history_mother,
+        string memory _history_sibling,
+        string memory _hosprep,
+        string[] memory _donate,
+        string[] memory _donatedeath,
+        string[] memory _misc
+        ) public {
+        users.push(User({
             donorAddress: msg.sender,
             name: _name,
-            bloodGroup: _bloodGroup
-            // Initialize other donor fields
+            email: _email,
+            createpwd:_createpwd,
+            confirmpwd:_confirmpwd,
+            aadhaar: _aadhaar,
+            phone:_phone,
+            dob:_dob,
+            imgURL:_imgURL,
+            addr1:_addr1,
+            addr2:_addr2,
+            city:_city,
+            state:_state,
+            country:_country,
+            pincode:_pincode,
+            hospital:_hospital,
+            hospaddr:_hospaddr,
+            hospphno:_hospphno,
+            bloodgrp:_bloodgrp,
+            history_father:_history_father,
+            history_mother:_history_mother,
+            history_sibling:_history_sibling,
+            hosprep:_hosprep,
+            donate:_donate,
+            donatedeath:_donatedeath,
+            misc:_misc
         }));
     }
 
-    function registerRecipient(string memory _name, string memory _bloodGroup) public {
-        recipients.push(Recipient({
-            recipientAddress: msg.sender,
-            name: _name,
-            bloodGroup: _bloodGroup
-            // Initialize other recipient fields
-        }));
-    }
 
-    function donateOrgan(address _recipientAddress, string memory _organ) public {
-        // Check if the sender is a registered donor
-        bool isDonor = false;
-        for (uint i = 0; i < donors.length; i++) {
-            if (donors[i].donorAddress == msg.sender) {
-                isDonor = true;
-                break;
-            }
-        }
-        require(isDonor, "Only registered donors can donate organs");
-
-        // Check if the recipient exists
-        bool recipientExists = false;
-        for (uint i = 0; i < recipients.length; i++) {
-            if (recipients[i].recipientAddress == _recipientAddress) {
-                recipientExists = true;
-                break;
-            }
-        }
-        require(recipientExists, "Recipient does not exist");
-
-        donations.push(Donation({
-            donorAddress: msg.sender,
-            recipientAddress: _recipientAddress,
-            organ: _organ
-            // Initialize other donation fields
-        }));
-    }
 }

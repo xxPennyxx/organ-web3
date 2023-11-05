@@ -1,0 +1,163 @@
+<%- include("partials/header") %>
+
+    <body>
+        <div class="container">
+            <header class="d-flex flex-wrap  py-3 mb-4 border-bottom">
+                <h1 class="display-5 fw-bold">ThriveLife</h1>
+            </header>
+            <h2>Recipient Registration Form</h2>
+            <h6>To be filled by the hospital only</h6><br><br>
+            <form action="/recipient_register" method="post">
+                <h4>Personal Details</h4>
+                <div class="row g-2">
+                <div class="col-lg-6">
+                    <label for="name" class="form-label">Full name (as mentioned in the government records)</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="col-lg-6">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob">
+
+                
+                </div>
+                <br>
+
+
+
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label for="createpwd" class="form-label">Aadhaar No.</label>
+                        <input type="number" class="form-control" id="aadhaar" name="aadhaar">
+    
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="createpwd" class="form-label">Mobile No.</label>
+                        <input type="number" class="form-control" id="phone" name="phone">
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row g-2">
+                        
+                            <div class="col-lg-6">
+                                <label for="pincode" class="form-label">PinCode</label>
+                                <input type="text" class="form-control" id="pincode" required name="pincode">
+                            </div>
+                            
+                            </div>
+                            <br>
+                            <!-- <div class="col-lg-6">
+                                <label for="confirmpwd" class="form-label">Confirm password</label>
+                            <input type="password" class="form-control" id="confirmpwd" name="confirmpwd">
+                            </div> -->
+                            </div>
+                            <br>
+
+                        
+       <h4>Medical Details</h4>
+       <div class="row g-2">
+        <div class="col-lg-6">
+            <label for="hospital" class="form-label">Name of Hospital</label>
+            <select class="form-select" aria-label="Default select example" name="hospital" id="hospital">
+                <option value=""></option>
+                
+                </select>
+
+        </div>
+        <div class="col-lg-6">
+            <label for="hospaddr" class="form-label">Address of Hospital</label>
+            <input type="text" class="form-control" id="hospaddr" name="hospaddr">
+        </div>
+        </div>
+        <br>
+        <div class="row g-2">
+            <div class="col-lg-6">
+                <label for="hospphno" class="form-label">Phone No. of Hospital</label>
+            <input type="number" class="form-control" id="hospphno" name="hospphno">
+
+            </div>
+            <div class="col-lg-6">
+                <label for="state" class="form-label">Blood Group</label>
+                <select class="form-select" aria-label="Default select example" name="bloodgrp" id="bloodgrp">
+                    <option value="A+ve">A+ve</option>
+                    <option value="A-ve">A-ve</option>
+                    <option value="B+ve">B+ve</option>
+                    <option value="B-ve">B-ve</option>
+                    <option value="AB+ve">AB+ve</option>
+                    <option value="AB-ve">AB-ve</option>
+                    <option value="O+ve">O+ve</option>
+                    <option value="O-ve">O-ve</option></select>
+            </div>
+            </div>
+            <br>
+            <div class="row g-2">
+                <div class="col-lg-6">
+                    <label for="history" class="form-label">Personal/Family Medical History</label>
+                <textarea rows="5" type="text" class="form-control" id="history" name="history"></textarea>
+        
+                </div>
+                <div class="col-lg-6">
+                    <label for="diagnosed" class="form-label">Date since diagnosed</label>
+                <input type="date" class="form-control" id="diagnosed" name="diagnosed">
+    
+                </div>
+                
+                </div>
+                <br>
+                
+
+                <h4>Donation Details</h4>
+
+                <div class="row g-2">
+                    <div class="col-lg-6">
+                        <label class="form-label">What would you like to receive?</label><br>
+                    
+                    <input class="form-check-input" type="checkbox" value="heart" name="receive">
+                    <label class="form-check-label">Heart</label><br>
+                    <input class="form-check-input" type="checkbox" value="kidney" name="receive">
+                    <label class="form-check-label">Kidney</label><br>
+                    <input class="form-check-input" type="checkbox" value="liver" name="receive">
+                    <label class="form-check-label">Liver</label><br>
+                    <input class="form-check-input" type="checkbox" value="skin" name="receive">
+                    <label class="form-check-label">Skin</label><br>
+                    <input class="form-check-input" type="checkbox" value="eyes" name="receive">
+                    <label class="form-check-label">Eyes</label><br>
+                    <input class="form-check-input" type="checkbox" value="lungs" name="receive">
+                    <label class="form-check-label">Lungs</label><br>
+                    <input class="form-check-input" type="checkbox" value="blood" name="receive">
+                    <label class="form-check-label">Blood</label><br>
+        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label class="form-label">Level of urgency</label><br>
+                        <select class="form-select" name="urgency" id="urgency">
+                            <option value="Low">Low</option>
+                            <option value="Mid">Mid</option>
+                            <option value="High">High</option>
+                            </select>
+                    
+                   
+        
+                    </div>
+                    
+                    </div>
+                    <br>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I declare that all the information is true and correct to the best of my knowledge
+                    </label><br><br>
+                    <button name="submit" type="submit" class="btn btn-danger">Submit</button>
+
+                  </div>
+              
+        
+                </div>
+                <br>
+
+              </form>
+          </div>
+
+          <%- include("partials/footer") %>

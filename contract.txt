@@ -1,0 +1,87 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract OrganDonation {
+    address public admin; // The contract administrator
+
+    struct Donor {
+        address donorAddress;
+        string name;
+        string bloodGroup;
+        // Add more donor-related fields here
+    }
+
+    struct Recipient {
+        address recipientAddress;
+        string name;
+        string bloodGroup;
+        // Add more recipient-related fields here
+    }
+
+    struct Donation {
+        address donorAddress;
+        address recipientAddress;
+        string organ;
+        // Add more donation-related fields here
+    }
+
+    Donor[] public donors;
+    Recipient[] public recipients;
+    Donation[] public donations;
+
+    constructor() {
+        admin = msg.sender;
+    }
+
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Only the administrator can call this function");
+        _;
+    }
+
+    function registerDonor(string memory _name, string memory _bloodGroup) public {
+        donors.push(Donor({
+            donorAddress: msg.sender,
+            name: _name,
+            bloodGroup: _bloodGroup
+            // Initialize other donor fields
+        }));
+    }
+
+    function registerRecipient(string memory _name, string memory _bloodGroup) public {
+        recipients.push(Recipient({
+            recipientAddress: msg.sender,
+            name: _name,
+            bloodGroup: _bloodGroup
+            // Initialize other recipient fields
+        }));
+    }
+
+    function donateOrgan(address _recipientAddress, string memory _organ) public {
+        // Check if the sender is a registered donor
+        bool isDonor = false;
+        for (uint i = 0; i < donors.length; i++) {
+            if (donors[i].donorAddress == msg.sender) {
+                isDonor = true;
+                break;
+            }
+        }
+        require(isDonor, "Only registered donors can donate organs");
+
+        // Check if the recipient exists
+        bool recipientExists = false;
+        for (uint i = 0; i < recipients.length; i++) {
+            if (recipients[i].recipientAddress == _recipientAddress) {
+                recipientExists = true;
+                break;
+            }
+        }
+        require(recipientExists, "Recipient does not exist");
+
+        donations.push(Donation({
+            donorAddress: msg.sender,
+            recipientAddress: _recipientAddress,
+            organ: _organ
+            // Initialize other donation fields
+        }));
+    }
+}

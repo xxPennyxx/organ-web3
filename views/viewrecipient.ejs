@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+
+    <body>
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">ThriveLife</h1>
+            <p>Giving the Gift of Life</p>
+            <div class="col-lg-6 mx-auto">
+                <h6 class="lead mb-4">Select donor</h6>
+                <form action="/view_recipient" method="POST">
+              <div class="d-grid gap-2 ">
+                <select class="form-select" name="recipients" id="recipients">
+
+                    <% recipients1.forEach(function(r){%>
+
+                        <option value="<%=r.aadhaar%>"><%=r.name%></option>
+                   <% }) %>
+
+
+
+                    </select>
+                    </div>
+                    <br><br>
+                
+                <button type="submit" class="btn btn-primary btn-lg blue1" style="width:30%; text-align: center;">View recipient</button>
+                </form>
+                    <br>
+            </div>
+          </div>
+          
+          <%- include("partials/footer") %>

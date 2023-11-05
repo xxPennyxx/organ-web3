@@ -1,0 +1,51 @@
+<%- include("partials/header")%>
+  <body>
+      <div class="container">
+          <header class="d-flex flex-wrap  py-3 mb-4 border-bottom">
+              <h1 class="display-5 fw-bold">ThriveLife</h1>
+          </header>
+          <h1>You are officially an Organ Donor/Recipient.</h1> 
+    
+        </div><br><br>
+
+
+        <div class="container">
+            <h2>Instructions for donor</h2>
+            <ul>
+              <li>Present yourself at your registered hospital for checkup every 6 months.</li>
+              <li>Take a screenshot of the below donor card and take a printout which you can carry with you in your wallet</li>
+              <li>Some other text</li>
+            </ul>
+        </div>
+
+        <div class="container">
+          <h2>Donor Card</h2>
+          
+          <div class="card mb-3" style="max-width: 800px;">
+              <div class="row g-0 donorcard">
+                <div class="col-md-4">
+                  <img src="<%=currUser1.imgURL %>" height="200" width="200" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8" style="background-color: #EFB495;">
+                  <div class="card-body">
+                    <h5 class="card-title" style="text-align: center; font-weight: 700; color:#952323; font-family: 'Times New Roman', Times, serif;">I AM AN ORGAN DONOR</h5>
+                    <p class="card-text"><b>Name:</b><%=currUser1.name %><br>
+                    <b>DOB:</b><%=new Date(currUser1.dob).toLocaleDateString() %><br>
+                    <b>Address:</b><%=currUser1.addr1 %>, <%=currUser1.addr2 %><br>
+                    <b>Phone No.:</b><%=currUser1.phone %><br></p>
+                    <p class="card-text"><b>Hospital Name:</b><%=currUser1.hospital %><br>
+                      <b>Hospital Doctor Contact:</b><%=currUser1.hospphno %><br>
+                  </p>
+                    <p class="card-text"><small>Donor No.: <%=currUser1.donorno %></small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a type="button" class="btn btn-success" href="/editprofile">Profile</a>
+            <a type="button" class="btn btn-warning" href="/">Go back</a>
+      </div>
+
+
+     
+
+        <%- include("partials/footer")%>

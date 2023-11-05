@@ -1,0 +1,314 @@
+<%- include("partials/header") %>
+
+<style>
+    #deceasedInfo {
+        display: flex;
+        align-items: center;
+    }
+
+    #deceasedInfo .col-lg-6 {
+        flex: 1;
+    }
+
+    #organsToDonateDeath {
+        display: none; /* Initially hide the section for organs to donate after death */
+    }
+
+    #organsToDonateLive {
+        display: none; /* Initially hide the section for organs to donate live */
+    }
+</style>
+
+
+    <body>
+        <div class="container">
+            <header class="d-flex flex-wrap  py-3 mb-4 border-bottom">
+                <h1 class="display-5 fw-bold">ThriveLife</h1>
+            </header>
+            <h2>Donor Registration Form</h2>
+            <h6>To be filled by the hospital only</h6><br><br>
+            <form action="/donor_register" method="post">
+                <h4>Personal Details</h4>
+                <div class="row g-2">
+                    <div class="col-lg-6">
+                        <label for="name" class="form-label">Is the donor deceased?</label>
+                        <input type="radio" id="deceasedYes" name="deceased" value="Yes"> Yes
+                        <input type="radio"  id="deceasedNo" name="deceased" value="No" checked> No
+                    </div>
+                    
+                    </div>
+                <div class="row g-2">
+                <div class="col-lg-6">
+                    <label for="name" class="form-label">Full name (as mentioned in the government records)</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="col-lg-6">
+                    <label for="dob" class="form-label">Age (If deceased, age at death)</label>
+                    <input type="number" class="form-control" id="age" name="age">
+                </div>
+                </div>
+                <br>
+                
+                
+
+                   
+                    
+
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label for="createpwd" class="form-label">Donor No.</label>
+                        <input type="number" class="form-control" id="donorno" name="donorno">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="pincode" class="form-label">PinCode</label>
+                            <input type="text" class="form-control" id="pincode" required name="pincode">
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row g-2">
+                            
+                            
+                            
+                            </div>
+                            <br>
+
+                            <div class="row g-2" id="deceasedInfo">
+                                <div class="col-lg-6">
+                                    <label for="dod" class="form-label">Date and time of death</label>
+                                    <input type="datetime-local" class="form-control" id="dod" name="dod">
+                                </div><br>
+                                <div class="col-lg-6">
+                                    <label for="cause" class="form-label">Cause of death</label>
+                                    <input type="text" class="form-control" id="cause" name="cause">
+                                </div>
+                                </div>
+                                <br>
+
+            
+       <h4>Medical Details</h4>
+       <div class="row g-2">
+        <div class="col-lg-6">
+            <label for="hospital" class="form-label">Name of Hospital</label>
+            <input class="form-control" id="hospital" name="hospital" list="hospital-list"/>
+            <datalist name="hospital-list" id="hospital-list">
+                <option value=""></option>
+                
+            </datalist>
+
+        </div>
+        <div class="col-lg-6">
+            <label for="hospaddr" class="form-label">Address of Hospital</label>
+            <input type="text" class="form-control" id="hospaddr" name="hospaddr">
+        </div>
+        </div>
+        <br>
+        <div class="row g-2">
+            <div class="col-lg-6">
+                <label for="hospphno" class="form-label">Phone No. of Hospital</label>
+            <input type="number" class="form-control" id="hospphno" name="hospphno">
+
+            </div>
+            <div class="col-lg-6">
+                <label for="state" class="form-label">Blood Group</label>
+                <input class="form-control" id="bloodgrp" list="bloodgrp-list" name="bloodgrp">
+                <datalist name="bloodgrp-list" id="bloodgrp-list">
+                    <option value="A+ve">A+ve</option>
+                    <option value="A-ve">A-ve</option>
+                    <option value="B+ve">B+ve</option>
+                    <option value="B-ve">B-ve</option>
+                    <option value="AB+ve">AB+ve</option>
+                    <option value="AB-ve">AB-ve</option>
+                    <option value="O+ve">O+ve</option>
+                    <option value="O-ve">O-ve</option></datalist>
+            </div>
+            </div>
+            <br>
+            <h4>Medical History details</h4>
+
+                <div class="row g-2">
+                
+                    <div class="col-lg-6">
+                        <label for="history" class="form-label">Father's History</label>
+                    <textarea rows="2" type="text" class="form-control" id="history_father" name="history_father"></textarea><br>
+                    <label for="history" class="form-label">Mother's History</label>
+                    <textarea rows="2" type="text" class="form-control" id="history_mother" name="history_mother"></textarea><br>
+                    <label for="history" class="form-label">Siblings' History</label>
+                    <textarea rows="2" type="text" class="form-control" id="history_sibling" name="history_sibling"></textarea><br>
+            
+                    </div>
+                    
+                    </div>
+                <br>
+                <h4>Donation Details</h4>
+
+                <div class="row g-2">
+                    <div class="col-lg-6">
+                        <label for="tissuetype" class="form-label">Tissue type</label>
+                        <input type="text" class="form-control" id="tissuetype" name="tissuetype">
+            
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="diseases" class="form-label">Communicable diseases, if any</label>
+                        <input type="text" class="form-control" id="diseases" name="diseases">
+            
+                    </div>
+                    
+                    
+                    </div>
+                    <br>
+
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label for="heirname" class="form-label">Name of legal heir</label>
+                            <input type="text" class="form-control" id="heirname" name="heirname">
+                
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="heirphno" class="form-label">Contact number of legal heir</label>
+                            <input type="number" class="form-control" id="heirphno" name="heirphno">
+                
+                        </div>
+                        
+                        
+                        </div>
+                        <br>
+
+                        
+
+                <div class="row g-2"  id="organsToDonateDeath">
+                    <div class="col-lg-6">
+                        <label class="form-label">What is the concerned organ to donate (after death)?</label><br>
+                    
+                        <input class="form-check-input" type="checkbox" value="Heart" name="donatedeath">
+                        <label class="form-check-label">Heart</label><br>
+                        <input class="form-check-input" type="checkbox" value="Full Body" name="donatedeath">
+                        <label class="form-check-label">Full body</label><br>
+                        <input class="form-check-input" type="checkbox" value="Liver" name="donatedeath">
+                        <label class="form-check-label">Liver</label><br>
+                        <input class="form-check-input" type="checkbox" value="Eyes" name="donatedeath">
+                        <label class="form-check-label">Eyes</label><br>
+                        <input class="form-check-input" type="checkbox" value="Cornea" name="donatedeath">
+                        <label class="form-check-label">Cornea</label><br>
+                        <input class="form-check-input" type="checkbox" value="Intestines" name="donatedeath">
+                        <label class="form-check-label">Intestines</label><br>
+                        <input class="form-check-input" type="checkbox" value="Lungs" name="donatedeath">
+                        <label class="form-check-label">Lungs</label><br>
+                        <input class="form-check-input" type="checkbox" value="Kidneys" name="donatedeath">
+                        <label class="form-check-label">Kidneys</label><br>
+                        <input class="form-check-input" type="checkbox" value="Pancreas" name="donatedeath">
+                        <label class="form-check-label">Pancreas</label><br>
+                        <input class="form-check-input" type="checkbox" value="Heart Valves" name="donatedeath">
+                        <label class="form-check-label">Heart Valves</label><br>
+                        <input class="form-check-input" type="checkbox" value="Blood vessels" name="donatedeath">
+                        <label class="form-check-label">Blood Vessels</label><br>
+        
+                    </div>
+                    
+                    </div><br> 
+
+
+                    <div class="row g-2" id="organsToDonateLive">
+                        <div class="col-lg-6">
+                            <label class="form-label">What is the concerned organ to donate (live)?</label><br>
+                        
+                        <input class="form-check-input" type="checkbox" value="Blood" name="donate">
+                        <label class="form-check-label">Blood</label><br>
+                        <input class="form-check-input" type="checkbox" value="Kidney" name="donate">
+                        <label class="form-check-label">Kidney</label><br>
+                        <input class="form-check-input" type="checkbox" value="Plasma" name="donate">
+                        <label class="form-check-label">Plasma</label><br>
+                        <input class="form-check-input" type="checkbox" value="Bone marrow" name="donate">
+                        <label class="form-check-label">Bone marrow</label><br>
+                        <input class="form-check-input" type="checkbox" value="System cells" name="donate">
+                        <label class="form-check-label">System cells</label><br>
+                        <input class="form-check-input" type="checkbox" value="Skin" name="donate">
+                        <label class="form-check-label">Skin</label><br>
+                        <input class="form-check-input" type="checkbox" value="Lung" name="donate">
+                        <label class="form-check-label">Lung</label><br>
+            
+                        </div>
+                        </div>
+
+                        <script>
+                            function setInitialVisibility() {
+                                const noRadio = document.getElementById("deceasedNo");
+                                const deceasedInfo = document.getElementById("deceasedInfo");
+                                const organsToDonateDeath = document.getElementById("organsToDonateDeath");
+                                const organsToDonateLive = document.getElementById("organsToDonateLive");
+                    
+                                if (noRadio.checked) {
+                                    deceasedInfo.style.display = "none"; // Hide the container for deceased info
+                                    organsToDonateDeath.style.display = "none"; // Hide the section for organs to donate after death
+                                    organsToDonateLive.style.display = "block"; // Show the section for organs to donate live
+                                } else {
+                                    deceasedInfo.style.display = "block"; // Show the container for deceased info
+                                    organsToDonateDeath.style.display = "block"; // Show the section for organs to donate after death
+                                    organsToDonateLive.style.display = "none"; // Hide the section for organs to donate live
+                                }
+                            }
+                    
+                             deceasedRadio = document.querySelectorAll('input[name="deceased"]');
+                             deceasedInfo = document.getElementById("deceasedInfo");
+                            const organsToDonateDeath = document.getElementById("organsToDonateDeath");
+                            const organsToDonateLive = document.getElementById("organsToDonateLive");
+                    
+                            // Add change event listeners to handle the visibility
+                            deceasedRadio.forEach((radio) => {
+                                radio.addEventListener("change", function () {
+                                    if (this.value === "Yes") {
+                                        deceasedInfo.style.display = "block"; // Show the container for deceased info
+                                        organsToDonateDeath.style.display = "block"; // Show the section for organs to donate after death
+                                        organsToDonateLive.style.display = "none"; // Hide the section for organs to donate live
+                                    } else {
+                                        deceasedInfo.style.display = "none"; // Hide the container for deceased info
+                                        organsToDonateDeath.style.display = "none"; // Hide the section for organs to donate after death
+                                        organsToDonateLive.style.display = "block"; // Show the section for organs to donate live
+                                    }
+                                });
+                            });
+                    
+                            // Set the initial visibility when the page loads
+                            window.onload = setInitialVisibility;
+                        </script>        
+
+                        
+                    <br>
+
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label for="details" class="form-label">Details of organs harvested</label>
+                            <textarea rows="3" class="form-control" id="details" name="details"></textarea>
+                
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="storage" class="form-label">Storage details</label>
+                            <textarea rows="3" class="form-control" id="storage" name="storage"></textarea>
+                
+                        </div>
+                        
+                        
+                        </div>
+                        <br>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I declare that all the information is true and I have the donor's family's consent
+                    </label><br><br>
+                    <button name="submit" type="submit" class="btn btn-danger">Submit</button>
+
+                  </div>
+              
+                
+
+                </div>
+                <br>
+
+              </form>
+
+          </div>
+
+          
+
+          <%- include("partials/footer") %>

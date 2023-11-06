@@ -7,11 +7,11 @@ let {Web3} = require('web3');
 
 const organContract=require("./build/contracts/OrganDonation.json")
 const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-const contractAddress = '0x9D094e9B550B80f1CA95C9B4fEc35Bbe07FC030E'; //keep updating the CONTRACT address as soon as you deploy
+const contractAddress = '0x15D300649b505Fced6f9D1776543B24f32eC7e58'; //keep updating the CONTRACT address as soon as you deploy
 const contractAbi = organContract.abi;
 const contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
 
-const senderAddress = '0x897E94e4802549ac73360a13a4C04e052d3F9b3B'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
+const senderAddress = '0xEA6Cc325e6dCBF99AA4b1c82ba1F729dF914AA0C'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
 const privateKey = process.env.PVT_KEY; 
 
 
@@ -146,6 +146,16 @@ app.get("/",function(req,res){
 
   });
 
+
+function makeArray(value) {
+  if (Array.isArray(value)) {
+      return value;
+  } else if (value) {
+      return [value];
+  } else {
+      return [];
+  }
+}
   app.post("/register", async function(req, res) {
     const newUser = new User({
         name: req.body.name,
@@ -170,14 +180,14 @@ app.get("/",function(req,res){
         history_father: req.body.history_father,
         history_mother: req.body.history_mother,
         history_sibling: req.body.history_sibling,
-        donate: req.body.donate,
-        donatedeath: req.body.donatedeath,
+        donate: makeArray(req.body.donate),
+        donatedeath: makeArray(req.body.donatedeath),
         misc: req.body.misc,
         donorno: parseInt(Math.random() * 1000000000)
     });
-
-    const donate = req.body.donate ? [req.body.donate] : [];
-const donatedeath = req.body.donatedeath ? [req.body.donatedeath] : [];
+    
+    let donate=newUser.donate;
+    let donatedeath=newUser.donatedeath;
     await contractInstance.methods.registerUser(req.body.name,req.body.aadhaar,donate,donatedeath)
                 .send({
                     from: senderAddress,
@@ -185,7 +195,6 @@ const donatedeath = req.body.donatedeath ? [req.body.donatedeath] : [];
                 }, function(error) {
                     if (!error) {
                         console.log("Done");
-                        res.redirect("/");
                     } else {
                         res.redirect("/register");
                     }
@@ -198,7 +207,7 @@ const donatedeath = req.body.donatedeath ? [req.body.donatedeath] : [];
         if (foundItems.length === 0) {
             currUsers.push(newUser);
             newUser.save();
-            res.redirect("/");
+            res.redirect("/donor");
 
         } else
             res.redirect("/register");
@@ -206,10 +215,10 @@ const donatedeath = req.body.donatedeath ? [req.body.donatedeath] : [];
 });
 
 
-//   app.get("/donor",function(req,res){
-//     res.render("donor",{currUser1:currUsers[currUsers.length-1]});
+  app.get("/donor",function(req,res){
+    res.render("donor",{currUser1:currUsers[currUsers.length-1]});
 
-//   });
+  });
 
 //   app.get("/editprofile",function(req,res){
 //     res.render("editprofile",{currUser1:currUsers[currUsers.length-1]});

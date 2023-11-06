@@ -7,11 +7,11 @@ let {Web3} = require('web3');
 
 const organContract=require("./build/contracts/OrganDonation.json")
 const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-const contractAddress = '0xeaa466A9a6cAf6EE8Ac0578fd8A87b27Bfa6018e'; //keep updating the CONTRACT address as soon as you deploy
+const contractAddress = '0x9D094e9B550B80f1CA95C9B4fEc35Bbe07FC030E'; //keep updating the CONTRACT address as soon as you deploy
 const contractAbi = organContract.abi;
 const contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
 
-const senderAddress = '0x6154E7d0f00D9166b1219631d53be9315960698e'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
+const senderAddress = '0x897E94e4802549ac73360a13a4C04e052d3F9b3B'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
 const privateKey = process.env.PVT_KEY; 
 
 
@@ -146,7 +146,7 @@ app.get("/",function(req,res){
 
   });
 
-  app.post("/register", function(req, res) {
+  app.post("/register", async function(req, res) {
     const newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -175,6 +175,21 @@ app.get("/",function(req,res){
         misc: req.body.misc,
         donorno: parseInt(Math.random() * 1000000000)
     });
+
+    const donate = req.body.donate ? [req.body.donate] : [];
+const donatedeath = req.body.donatedeath ? [req.body.donatedeath] : [];
+    await contractInstance.methods.registerUser(req.body.name,req.body.aadhaar,donate,donatedeath)
+                .send({
+                    from: senderAddress,
+                    gas: 6721975
+                }, function(error) {
+                    if (!error) {
+                        console.log("Done");
+                        res.redirect("/");
+                    } else {
+                        res.redirect("/register");
+                    }
+                });
     
     User.find({
         aadhaar: req.body.aadhaar
@@ -183,20 +198,7 @@ app.get("/",function(req,res){
         if (foundItems.length === 0) {
             currUsers.push(newUser);
             newUser.save();
-
-            contractInstance.methods.registerUser(req.body.donate,req.body.donatedeath)
-                .send({
-                    from: senderAddress,
-                    gas: 20000000
-                }, function(error, transactionHash) {
-                    if (error) {
-                        console.error("Transaction Error:", error);
-                        res.redirect("/register");
-                    } else {
-                        console.log("Transaction Hash:", transactionHash);
-                        res.redirect("/donor");
-                    }
-                });
+            res.redirect("/");
 
         } else
             res.redirect("/register");

@@ -6,6 +6,8 @@ contract OrganDonation {
 
     struct User {
     address donorAddress;
+    string name;
+    uint256 aadhaar;
     string[] donate;
     string[] donatedeath;
 }
@@ -23,12 +25,15 @@ contract OrganDonation {
 
     function registerUser
     (
-        
+        string memory _name,
+        uint256 _aadhaar,
         string[] memory _donate,
         string[] memory _donatedeath
         ) public {
         users.push(User({
             donorAddress: msg.sender,
+            name:_name,
+            aadhaar:_aadhaar,
             donate:_donate,
             donatedeath:_donatedeath
         }));
@@ -36,6 +41,8 @@ contract OrganDonation {
 
     function getUserData(uint256 index) public view returns (
     address donorAddress,
+    string memory name,
+    uint256 aadhaar,
     string[] memory donate,
     string[] memory donatedeath
 ) {
@@ -44,13 +51,12 @@ contract OrganDonation {
     User memory user = users[index];
     return (
         user.donorAddress,
+        user.name,
+        user.aadhaar,
         user.donate,
         user.donatedeath
     );
 }
-
-
-
 
 
 }

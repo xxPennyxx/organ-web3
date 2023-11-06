@@ -7,11 +7,11 @@ let {Web3} = require('web3');
 
 const organContract=require("./build/contracts/OrganDonation.json")
 const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-const contractAddress = '0x15D300649b505Fced6f9D1776543B24f32eC7e58'; //keep updating the CONTRACT address as soon as you deploy
+const contractAddress = '0x68616150594CF0467A41AFDA33D67E5Bc65C6BE3'; //keep updating the CONTRACT address as soon as you deploy
 const contractAbi = organContract.abi;
 const contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
 
-const senderAddress = '0xEA6Cc325e6dCBF99AA4b1c82ba1F729dF914AA0C'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
+const senderAddress = '0x5C0aaa1C34F4fCDa2332301492D96e7758A92F22'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
 const privateKey = process.env.PVT_KEY; 
 
 
@@ -220,186 +220,173 @@ function makeArray(value) {
 
   });
 
-//   app.get("/editprofile",function(req,res){
-//     res.render("editprofile",{currUser1:currUsers[currUsers.length-1]});
+  app.get("/editprofile",function(req,res){
+    res.render("editprofile",{currUser1:currUsers[currUsers.length-1]});
 
-//   });
+  });
 
-//   app.post("/login_hospital",function(req,res){
-//     HospitalUser.find({
-//       email: req.body.email,
-//       password: req.body.password
-//     }).then(function(foundItems){
-//       if(!(foundItems)){
-//         res.redirect("/login_hospital")
-//       }
-//       else{
-//         res.redirect("/dashboard");
-//       }
-//     })
+  app.post("/login_hospital",function(req,res){
+    HospitalUser.find({
+      email: req.body.email,
+      password: req.body.password
+    }).then(function(foundItems){
+      if(!(foundItems)){
+        res.redirect("/login_hospital")
+      }
+      else{
+        res.redirect("/dashboard");
+      }
+    })
 
 
-//   });
+  });
   
-//   app.post("/login",function(req,res){
+  app.post("/login",function(req,res){
     
-//     User.findOne({email: req.body.email,createpwd: req.body.password}).then(function(foundItems){
-//       if(!(foundItems)){
-//       res.redirect("/login");
-//       }
-//         else{console.log(foundItems);
-//       currUsers.push(foundItems);
-//       res.redirect("/donor")
-//         }
-//     })
-//   });
+    User.findOne({email: req.body.email,createpwd: req.body.password}).then(function(foundItems){
+      if(!(foundItems)){
+      res.redirect("/login");
+      }
+        else{console.log(foundItems);
+      currUsers.push(foundItems);
+      res.redirect("/donor")
+        }
+    })
+  });
 
-//   app.get("/dashboard",function(req,res){
-//     res.render("dashboard");
+  app.get("/dashboard",function(req,res){
+    res.render("dashboard");
 
-//   });
+  });
 
-//   app.get("/donor_register",function(req,res){
-//     res.render("donor_register");
+  app.get("/donor_register",function(req,res){
+    res.render("donor_register");
+  });
 
-//   });
+  app.post("/donor_register",async function(req,res){
 
-//   app.get("/recipient_register",function(req,res){
-//     res.render("recipient_register");
+    if(req.body.deceased==='Yes'){
 
-//   });
+      donatedeath=makeArray(req.body.donatedeath);
+      await contractInstance.methods.registerDeceasedDonor(req.body.name,donatedeath,req.body.details,req.body.storage)
+            .send({
+                from: senderAddress,
+                gas: 6721975
+            }, function(error) {
+                if (error) {
+                    console.log("Error");
+                } 
+            });
 
-//   app.post("/donor_register",function(req,res){
-//     //the donor should have already registered
-//     User.find({donorno:req.body.donorno,name:req.body.name}).then(function(foundItems){
-//       if(foundItems.length!=0){
-//         const newUser=new Donor({
-//           name:req.body.name,
-//           age:req.body.age,
-//           deceased:req.body.deceased,
-//           dod:req.body.dod,
-//           cause:req.body.cause,
-//           pincode:req.body.pincode,
-//           donorno:req.body.donorno,
-//           hospital:req.body.hospital,
-//             hospaddr:req.body.hospaddr,
-//             hospphno:req.body.hospphno,
-//             bloodgrp:req.body.bloodgrp,
-//             history_father:req.body.history_father,
-//             history_mother:req.body.history_mother,
-//             history_sibling:req.body.history_sibling,
-//             tissuetype:req.body.tissuetype,
-//             diseases:req.body.diseases,
-//             heirname:req.body.heirname,
-//             heirphno:req.body.heirphno,
-//             donatedeath:req.body.donatedeath,
-//             donate:req.body.donate,
-//             details:req.body.details,
-//             storage:req.body.storage      
-//          });
+
+     }else{
+
+      donate=makeArray(req.body.donate);
+      await contractInstance.methods.registerAliveDonor(req.body.name,donate,req.body.details,req.body.storage)
+            .send({
+                from: senderAddress,
+                gas: 6721975
+            }, function(error) {
+                if (error) {
+                    console.log("Error");
+                } 
+            });
+
+     }
+    //the donor should have already registered
+    User.find({donorno:req.body.donorno,name:req.body.name}).then(function(foundItems){
+      if(foundItems.length!=0){
+        const newUser=new Donor({
+          name:req.body.name,
+          age:req.body.age,
+          deceased:req.body.deceased,
+          dod:req.body.dod,
+          cause:req.body.cause,
+          pincode:req.body.pincode,
+          donorno:req.body.donorno,
+          hospital:req.body.hospital,
+            hospaddr:req.body.hospaddr,
+            hospphno:req.body.hospphno,
+            bloodgrp:req.body.bloodgrp,
+            history_father:req.body.history_father,
+            history_mother:req.body.history_mother,
+            history_sibling:req.body.history_sibling,
+            tissuetype:req.body.tissuetype,
+            diseases:req.body.diseases,
+            heirname:req.body.heirname,
+            heirphno:req.body.heirphno,
+            donatedeath:req.body.donatedeath,
+            donate:req.body.donate,
+            details:req.body.details,
+            storage:req.body.storage      
+         });
+
+         
       
-//          //to avoid duplication
-//          Donor.find({donorno:req.body.donorno}).then(function(foundUsers){
-//           if(foundUsers.length===0){
-//             console.log(newUser);
-//             newUser.save();
-//             res.redirect("/dashboard");
-//           }
-//           else{
-//             res.redirect("/donor_register")
-//           }
+         //to avoid duplication
+         Donor.find({donorno:req.body.donorno}).then(function(foundUsers){
+          if(foundUsers.length===0){
+            // console.log(newUser);
+            newUser.save();
+            res.redirect("/dashboard");
+          }
+          else{
+            res.redirect("/donor_register")
+          }
       
-//          })
+         })
 
-//       }
-//       else
-//       {
-//         res.redirect("/donor_register")
-//       }
-//     })
+      }
+      else
+      {
+        res.redirect("/donor_register")
+      }
+    })
    
 
-//   });
-
-//   app.post("/recipient_register",function(req,res){
-//     User.find({aadhaar:req.body.aadhaar,name:req.body.name}).then(function(foundItems){
-//       if(foundItems.length!=0){
-//         const newUser=new Recipient({
-//           name:req.body.name,
-//           dob:req.body.dob,
-//           aadhaar:req.body.aadhaar,
-//           pincode:req.body.pincode,
-//           phone:req.body.phone,
-//           hospital:req.body.hospital,
-//             hospaddr:req.body.hospaddr,
-//             hospphno:req.body.hospphno,
-//             bloodgrp:req.body.bloodgrp,
-//             history:req.body.history,
-//             diagnosed:req.body.diagnosed,
-//             receive:req.body.receive,
-//             urgency:req.body.urgency
-      
-//          });
-      
-//          Recipient.find({aadhaar:req.body.aadhaar}).then(function(foundUsers){
-//           if(foundUsers.length===0){
-//             console.log(newUser);
-//             newUser.save();
-//             res.redirect("/dashboard");
-//           }
-//           else{
-//            res.redirect("/recipient_register")
-//           }
-      
-//          })
+  });
 
 
-//       }
-//       else{
-//         res.redirect("/recipient_register")
-//       }
-//     })
-//    });
 
-//    app.post("/editprofile",function(req,res){
-//     const editedUser={
-//       name:req.body.name,
-//       email:req.body.email,
-//       aadhaar:req.body.aadhaar,
-//       phone:req.body.phone,
-//       dob:req.body.dob,
-//       imgURL:req.body.imgURL,
-//       addr1:req.body.addr1,
-//       addr2:req.body.addr2,
-//       city:req.body.city,
-//       state:req.body.state,
-//       country:req.body.country,
-//       pincode:req.body.pincode,
-//       hospital:req.body.hospital,
-//       hospaddr:req.body.hospaddr,
-//       hospphno:req.body.hospphno,
-//       bloodgrp:req.body.bloodgrp,
-//       history:req.body.history,
-//       donate:req.body.donate,
-//       misc:req.body.misc,
-//       hosprep:req.body.hosprep,
-//       history_father:req.body.history_father,
-//       history_mother:req.body.history_mother,
-//       history_sibling:req.body.history_sibling,
-//       donatedeath:req.body.donatedeath,
-//     };
-//     User.findOne({aadhaar:req.body.submit}).then(function(foundUsers){
-//       if(foundUsers.length!=0){
-//         User.updateOne({aadhaar:req.body.submit},editedUser).then(function(){
-//             User.findOne({aadhaar:req.body.aadhaar}).then(function(foundUser){
-//               console.log(foundUser);
-//               currUsers.push(foundUser);
-//               res.redirect("/donor");
-//             })
-//         }) 
-//       }
-//     })
-//   });
+   app.post("/editprofile",function(req,res){
+    const editedUser={
+      name:req.body.name,
+      email:req.body.email,
+      aadhaar:req.body.aadhaar,
+      phone:req.body.phone,
+      dob:req.body.dob,
+      imgURL:req.body.imgURL,
+      addr1:req.body.addr1,
+      addr2:req.body.addr2,
+      city:req.body.city,
+      state:req.body.state,
+      country:req.body.country,
+      pincode:req.body.pincode,
+      hospital:req.body.hospital,
+      hospaddr:req.body.hospaddr,
+      hospphno:req.body.hospphno,
+      bloodgrp:req.body.bloodgrp,
+      history:req.body.history,
+      donate:req.body.donate,
+      misc:req.body.misc,
+      hosprep:req.body.hosprep,
+      history_father:req.body.history_father,
+      history_mother:req.body.history_mother,
+      history_sibling:req.body.history_sibling,
+      donatedeath:req.body.donatedeath,
+    };
+    User.findOne({aadhaar:req.body.submit}).then(function(foundUsers){
+      if(foundUsers.length!=0){
+        User.updateOne({aadhaar:req.body.submit},editedUser).then(function(){
+            User.findOne({aadhaar:req.body.aadhaar}).then(function(foundUser){
+              console.log(foundUser);
+              currUsers.push(foundUser);
+              res.redirect("/donor");
+            })
+        }) 
+      }
+    })
+  });
 
 
 //   app.get("/view_donor",function(req,res){

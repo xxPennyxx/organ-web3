@@ -7,13 +7,12 @@ let {Web3} = require('web3');
 
 const organContract=require("./build/contracts/OrganDonation.json")
 const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-const contractAddress = '0x5ac38dc93d1Dcb9A0C032A01Ad0C966509671FF0'; //keep updating the CONTRACT address as soon as you deploy
+const contractAddress = process.env.CONTRACT_ADDRESS; //keep updating the CONTRACT address as soon as you deploy
 const contractAbi = organContract.abi;
 const contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
 
-const senderAddress = '0x3F1B8be3100fc4260dc1122c8CA1a7F712C73E53'; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
+const senderAddress = process.env.SENDER_ADDRESS; //Also don't forget to have a look at the SENDER address which is one of those accounts on Ganache GUI
 const privateKey = process.env.PVT_KEY; 
-
 
 let app=express();
 app.set('view engine','ejs')

@@ -47,6 +47,21 @@ async function getHospitals(pincode) {
       }
     });
 
+    const hospitalInput = document.getElementById('hospital');
+    hospitalInput.addEventListener('input', function () {
+      const inputHospitalName = hospitalInput.value.trim();
+      
+      const matchedHospital = hospital_data.find((h) => h.Hospital_Name === inputHospitalName);
+      if (matchedHospital) {
+        pincodeInput.value = matchedHospital.Pincode;
+        addressInput.value = matchedHospital.Address_Original_First_Line;
+      } else {
+        // Clear the input fields if no matching hospital is found
+        pincodeInput.value = '';
+        addressInput.value = '';
+      }
+    });
+
     hospital_data.forEach(function (h) {
       const option = document.createElement('option');
       option.value = h.Hospital_Name;
@@ -59,13 +74,11 @@ async function getHospitals(pincode) {
 }
 
 
-// Listen for pincode input changes
+
+
 const pincodeInput = document.getElementById('pincode');
 pincodeInput.addEventListener('input', (event) => {
   const pincode = event.target.value.trim();
-  // console.log(pincode);
   getHospitals(pincode);
 });
-
-
  

@@ -1,6 +1,4 @@
-## Tellonym Web3 edition
-
-Hey folks! So I decided to recreate Tellonym using the Ethereum blockchain, and give it the functionality of adding and deleting secrets, aka "tells". If you'd like to test it out on your own computer, here is a breakdown of the steps:
+## Organ Donation Web3 edition
 
 1. Clone the repository using `git clone https://github.com/xxPennyxx/organ-web3.git` or simply download the source code.
 2. Head to the directory of this project in your terminal and install all NPM packages using `npm i`. **(NodeJS required!!)**

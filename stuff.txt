@@ -5,3 +5,4 @@ let indexToQuery = 0; //starts from 0
 organContractInstance.getUserData(indexToQuery).then(function(result){console.log(result)});
 
 organContractInstance.getDeceasedDonorData(0).then(function(result){console.log(result)});
+organContractInstance.getAliveDonorData(0).then(function(result){console.log(result)});

@@ -389,100 +389,59 @@ function makeArray(value) {
   });
 
 
-//   app.get("/view_donor",function(req,res){
-//     Donor.find().then(function(donors){
-//       res.render("viewdonor",{donors1:donors})
-//     })
-//   })
+  app.get("/view_donor",function(req,res){
+    Donor.find().then(function(donors){
+      res.render("viewdonor",{donors1:donors})
+    })
+  })
 
-//   app.post("/view_donor",function(req,res){
-//     Donor.find({donorno:req.body.donors}).then(function(foundDonor){
-//       foundDonor1=foundDonor;
-//       res.redirect("/edit_donor")
-//     })
-//   })
+  app.post("/view_donor",function(req,res){
+    Donor.find({donorno:req.body.donors}).then(function(foundDonor){
+      foundDonor1=foundDonor;
+      res.redirect("/edit_donor")
+    })
+  })
 
-//   app.get("/edit_donor",function(req,res){
-//     // console.log(foundDonor1);
+  app.get("/edit_donor",function(req,res){
+    // console.log(foundDonor1);
     
-//       res.render("editdonor",{donor1:foundDonor1[0]})
-//   })
+      res.render("editdonor",{donor1:foundDonor1[0]})
+  })
 
 
-//   app.post("/edit_donor",function(req,res){
-//     const editedDonor={
-//       name:req.body.name,
-//           age:req.body.age,
-//           dod:req.body.dod,
-//           deceased:req.body.deceased,
-//           cause:req.body.cause,
-//           pincode:req.body.pincode,
-//           donorno:req.body.donorno,
-//           hospital:req.body.hospital,
-//             hospaddr:req.body.hospaddr,
-//             hospphno:req.body.hospphno,
-//             bloodgrp:req.body.bloodgrp,
-//             history_father:req.body.history_father,
-//             history_mother:req.body.history_mother,
-//             history_sibling:req.body.history_sibling,
-//             tissuetype:req.body.tissuetype,
-//             diseases:req.body.diseases,
-//             heirname:req.body.heirname,
-//             heirphno:req.body.heirphno,
-//             donatedeath:req.body.donatedeath,
-//             donate:req.body.donate,
-//             details:req.body.details,
-//             storage:req.body.storage      
+  app.post("/edit_donor",function(req,res){
+    const editedDonor={
+      name:req.body.name,
+          age:req.body.age,
+          dod:req.body.dod,
+          deceased:req.body.deceased,
+          cause:req.body.cause,
+          pincode:req.body.pincode,
+          donorno:req.body.donorno,
+          hospital:req.body.hospital,
+            hospaddr:req.body.hospaddr,
+            hospphno:req.body.hospphno,
+            bloodgrp:req.body.bloodgrp,
+            history_father:req.body.history_father,
+            history_mother:req.body.history_mother,
+            history_sibling:req.body.history_sibling,
+            tissuetype:req.body.tissuetype,
+            diseases:req.body.diseases,
+            heirname:req.body.heirname,
+            heirphno:req.body.heirphno,
+            donatedeath:req.body.donatedeath,
+            donate:req.body.donate,
+            details:req.body.details,
+            storage:req.body.storage      
   
-//      }
-//      Donor.updateOne({donorno:req.body.submit},editedDonor).then(function(){
-//       res.redirect("/dashboard");
-//      })
-//     // console.log(editedDonor);
-//   })
+     }
+     Donor.updateOne({donorno:req.body.submit},editedDonor).then(function(){
+      res.redirect("/dashboard");
+     })
+    // console.log(editedDonor);
+  })
 
-//   app.get("/view_recipient",function(req,res){
-//     Recipient.find().then(function(recipients){
-//       res.render("viewrecipient",{recipients1:recipients})
-//     })
-//   })
-
-//   app.post("/view_recipient",function(req,res){
-//     Recipient.find({aadhaar:req.body.recipients}).then(function(foundRecipient){
-//       foundRecipient1=foundRecipient;
-//       res.redirect("/edit_recipient")
-//     })
-//   })
-
-//   app.get("/edit_recipient",function(req,res){
-    
-//       res.render("editrecipient",{recipient1:foundRecipient1[0]})
-//   })
-
-//   app.post("/edit_recipient",function(req,res){
-    
-//     const editedRecipient={
-//       name:req.body.name,
-//           dob:req.body.dob,
-//           aadhaar:req.body.aadhaar,
-//           phone:req.body.phone,
-//           pincode:req.body.pincode,
-//           hospital:req.body.hospital,
-//             hospaddr:req.body.hospaddr,
-//             hospphno:req.body.hospphno,
-//             bloodgrp:req.body.bloodgrp,
-//             history:req.body.history,
-//             diagnosed:req.body.diagnosed,
-//             receive:req.body.receive,
-//             urgency:req.body.urgency
-
-//     };
-//     Recipient.updateOne({aadhaar:req.body.submit},editedRecipient).then(function(){
-//       res.redirect("/dashboard");
-//      })
-// })
-
-  
+ 
 
 app.listen(3000, ()=>{
     console.log("Join ThriveLife to donate! Head to http://localhost:3000");

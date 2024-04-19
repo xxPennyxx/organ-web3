@@ -198,7 +198,7 @@
                     <div class="col-lg-6">
 
                         <label class="form-label">What is the concerned organ to donate (after death)?</label><br>
-                        <% let donatedeath=['Heart','Full Body','Liver','Eyes','Cornea','Intestines','Lungs','Kidneys','Pancreas','Heart Valves','Blood vessels']; %>
+                        <% let donatedeath=['Heart','Liver','Lungs','Kidneys']; %>
                             <% donatedeath.forEach(function(d){ %>
 
                                 <% if (donor1.donatedeath.includes(d)){%>
@@ -219,7 +219,7 @@
                         <div class="col-lg-6">
     
                             <label class="form-label">What is the concerned organ to donate (live)?</label><br>
-                            <% let donate=['Blood','Kidney','Plasma','Bone marrow','System cells','Skin','Lung']; %>
+                            <% let donate=['Kidney','Lung']; %>
                             <% donate.forEach(function(d){ %>
     
                                     <% if (donor1.donate.includes(d)){%>
@@ -299,6 +299,120 @@
                         
                         </div>
                         <br>
+
+                        <h4>Miscellaneous Details</h4>
+
+                        <div class="row g-2">
+                            <div class="col-lg-6">
+                                <label for="wttime" class="form-label">Waiting Time</label>
+                                <input type="text" class="form-control" id="wttime" value="<%=donor1.wttime %>" name="wttime">
+                    
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="cpra" class="form-label">CPRA score</label>
+                                <input type="number" class="form-control" id="cpra" value="<%=donor1.cpra %>" name="cpra">
+                            <div id="createpwdtext" class="form-text">The CPRA score measures the donor-recipient compatibility.</div>
+
+                            </div>
+                            
+                            
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="priordonor" class="form-label">Prior Living Donor</label>
+                                    <input type="text" class="form-control" id="priordonor" value="<%=donor1.priordonor %>" name="priordonor">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="dist" class="form-label">Distance from donor hospital</label>
+                                    <input type="number" class="form-control" id="dist" value="<%=donor1.dist %>" name="dist">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="paedstatus" class="form-label">Paediatric Status</label>
+                                    <input type="text" class="form-control" id="paedstatus" value="<%=donor1.paedstatus %>" name="paedstatus">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="benefit" class="form-label">Survival benefit</label>
+                                    <input type="text" class="form-control" id="benefit" value="<%=donor1.benefit %>" name="benefit">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="urgency" class="form-label">Medical Urgency</label>
+                                    <input type="text" class="form-control" id="urgency" value="<%=donor1.urgency %>" name="urgency">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="htmatch" class="form-label">Height match</label>
+                                    <input type="text" class="form-control" id="htmatch" value="<%=donor1.htmatch %>" name="htmatch">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="traveff" class="form-label">Travel Efficiency</label>
+                                    <input type="text" class="form-control" id="traveff" value="<%=donor1.traveff %>" name="traveff">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="survival" class="form-label">Likelihood for survival within 5 hours post transplant</label>
+                                    <input type="text" class="form-control" id="survival" value="<%=donor1.survival %>" name="survival">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="renal_function" class="form-label">Renal function</label>
+                                    <input type="number" class="form-control" id="renal_function" value="<%=donor1.renal_function %>" name="renal_function">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="organ_size" class="form-label">Organ size</label>
+                                    <input type="number" class="form-control" id="organ_size" value="<%=donor1.organ_size %>" name="organ_size">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="latitude" class="form-label">Latitude</label>
+                                    <input type="number" class="form-control" id="latitude" value="<%=donor1.latitude %>" name="latitude">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="longitude" class="form-label">Longitude</label>
+                                    <input type="number" class="form-control" id="longitude" value="<%=donor1.longitude %>" name="longitude">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
 
 
                 <div class="form-check">

@@ -181,26 +181,29 @@
                     
                         <input class="form-check-input" type="checkbox" value="Heart" name="donatedeath">
                         <label class="form-check-label">Heart</label><br>
-                        <input class="form-check-input" type="checkbox" value="Full Body" name="donatedeath">
-                        <label class="form-check-label">Full body</label><br>
+                        <input class="form-check-input" type="checkbox" value="Lungs" name="donatedeath">
+                        <label class="form-check-label">Lungs</label><br>
+                        <input class="form-check-input" type="checkbox" value="Kidneys" name="donatedeath">
+                        <label class="form-check-label">Kidneys</label><br>
+                        
                         <input class="form-check-input" type="checkbox" value="Liver" name="donatedeath">
                         <label class="form-check-label">Liver</label><br>
+
+
+                        <!-- <input class="form-check-input" type="checkbox" value="Full Body" name="donatedeath">
+                        <label class="form-check-label">Full body</label><br>
                         <input class="form-check-input" type="checkbox" value="Eyes" name="donatedeath">
                         <label class="form-check-label">Eyes</label><br>
                         <input class="form-check-input" type="checkbox" value="Cornea" name="donatedeath">
                         <label class="form-check-label">Cornea</label><br>
                         <input class="form-check-input" type="checkbox" value="Intestines" name="donatedeath">
                         <label class="form-check-label">Intestines</label><br>
-                        <input class="form-check-input" type="checkbox" value="Lungs" name="donatedeath">
-                        <label class="form-check-label">Lungs</label><br>
-                        <input class="form-check-input" type="checkbox" value="Kidneys" name="donatedeath">
-                        <label class="form-check-label">Kidneys</label><br>
                         <input class="form-check-input" type="checkbox" value="Pancreas" name="donatedeath">
                         <label class="form-check-label">Pancreas</label><br>
                         <input class="form-check-input" type="checkbox" value="Heart Valves" name="donatedeath">
                         <label class="form-check-label">Heart Valves</label><br>
                         <input class="form-check-input" type="checkbox" value="Blood vessels" name="donatedeath">
-                        <label class="form-check-label">Blood Vessels</label><br>
+                        <label class="form-check-label">Blood Vessels</label><br> -->
         
                     </div>
                     
@@ -211,19 +214,19 @@
                         <div class="col-lg-6">
                             <label class="form-label">What is the concerned organ to donate (live)?</label><br>
                         
-                        <input class="form-check-input" type="checkbox" value="Blood" name="donate">
-                        <label class="form-check-label">Blood</label><br>
+                        <!-- <input class="form-check-input" type="checkbox" value="Blood" name="donate">
+                        <label class="form-check-label">Blood</label><br> -->
                         <input class="form-check-input" type="checkbox" value="Kidney" name="donate">
                         <label class="form-check-label">Kidney</label><br>
-                        <input class="form-check-input" type="checkbox" value="Plasma" name="donate">
+                        <!-- <input class="form-check-input" type="checkbox" value="Plasma" name="donate">
                         <label class="form-check-label">Plasma</label><br>
                         <input class="form-check-input" type="checkbox" value="Bone marrow" name="donate">
                         <label class="form-check-label">Bone marrow</label><br>
                         <input class="form-check-input" type="checkbox" value="System cells" name="donate">
                         <label class="form-check-label">System cells</label><br>
                         <input class="form-check-input" type="checkbox" value="Skin" name="donate">
-                        <label class="form-check-label">Skin</label><br>
-                        <input class="form-check-input" type="checkbox" value="Lung" name="donate">
+                        <label class="form-check-label">Skin</label><br>-->
+                        <input class="form-check-input" type="checkbox" value="Lung" name="donate"> 
                         <label class="form-check-label">Lung</label><br>
             
                         </div>
@@ -289,6 +292,126 @@
                         
                         </div>
                         <br>
+
+
+                
+                        <h4>Miscellaneous Details</h4>
+
+                        <div class="row g-2">
+                            <div class="col-lg-6">
+                                <label for="wttime" class="form-label">Waiting Time</label>
+                                <input type="text" class="form-control" id="wttime" name="wttime">
+                    
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="cpra" class="form-label">CPRA score</label>
+                                <input type="number" class="form-control" id="cpra" name="cpra">
+                            <div id="createpwdtext" class="form-text">The CPRA score measures the donor-recipient compatibility.</div>
+
+                            </div>
+                            
+                            
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="priordonor" class="form-label">Prior Living Donor</label>
+                                    <input type="text" class="form-control" id="priordonor" name="priordonor">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="dist" class="form-label">Distance from donor hospital</label>
+                                    <input type="number" class="form-control" id="dist" name="dist">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="paedstatus" class="form-label">Paediatric Status</label>
+                                    <input type="text" class="form-control" id="paedstatus" name="paedstatus">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="benefit" class="form-label">Survival benefit</label>
+                                    <input type="text" class="form-control" id="benefit" name="benefit">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="urgency" class="form-label">Medical Urgency</label>
+                                    <input type="text" class="form-control" id="urgency" name="urgency">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="htmatch" class="form-label">Height match</label>
+                                    <input type="text" class="form-control" id="htmatch" name="htmatch">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="traveff" class="form-label">Travel Efficiency</label>
+                                    <input type="text" class="form-control" id="traveff" name="traveff">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="survival" class="form-label">Likelihood for survival within 5 hours post transplant</label>
+                                    <input type="text" class="form-control" id="survival" name="survival">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="renal_function" class="form-label">Renal function</label>
+                                    <input type="number" class="form-control" id="renal_function" name="renal_function">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="organ_size" class="form-label">Organ size</label>
+                                    <input type="number" class="form-control" id="organ_size" name="organ_size">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+                            <div class="row g-2">
+                                <div class="col-lg-6">
+                                    <label for="latitude" class="form-label">Latitude</label>
+                                    <input type="number" class="form-control" id="latitude" name="latitude">
+                        
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="longitude" class="form-label">Longitude</label>
+                                    <input type="number" class="form-control" id="longitude" name="longitude">
+    
+                                </div>
+                                
+                                
+                                </div>
+                            <br>
+
+
+
+
+            
 
 
                 <div class="form-check">

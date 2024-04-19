@@ -62,7 +62,9 @@ const userSchema = {
   donate:[String],
   donatedeath:[String],
   misc:[String],
-  donorno:Number
+  donorno:Number,
+  height:Number,
+  weight:Number
 };
 
 const donorSchema = {
@@ -87,7 +89,21 @@ const donorSchema = {
   donatedeath:[String],
   donate:[String],
   details:String,
-  storage:String
+  storage:String,
+  wttime: String,
+  cpra:Number,
+  priordonor:String,
+  dist:Number,
+  paedstatus:String,
+  benefit:String,
+  urgency:String,
+  htmatch:String,
+  traveff:String,
+  survival:String,
+  renal_function:Number,
+  latitude:Number,
+  longitude:Number,
+  organ_size:Number
 };
 
 const recipientSchema = {
@@ -183,7 +199,9 @@ function makeArray(value) {
         donate: makeArray(req.body.donate),
         donatedeath: makeArray(req.body.donatedeath),
         misc: req.body.misc,
-        donorno: parseInt(Math.random() * 1000000000)
+        donorno: parseInt(Math.random() * 1000000000),
+        height:req.body.height,
+        weight:req.body.weight
     });
     
     let donate=newUser.donate;
@@ -318,7 +336,22 @@ function makeArray(value) {
             donatedeath:req.body.donatedeath,
             donate:req.body.donate,
             details:req.body.details,
-            storage:req.body.storage      
+            storage:req.body.storage,
+            wttime: req.body.wttime,
+            cpra:req.body.cpra,
+            priordonor:req.body.priordonor,
+            dist:req.body.dist,
+            paedstatus:req.body.paedstatus,
+            benefit:req.body.benefit,
+            urgency:req.body.urgency,
+            htmatch:req.body.htmatch,
+            traveff:req.body.traveff,
+            survival:req.body.survival,
+            renal_function:req.body.renal_function,
+            latitude:req.body.latitude,
+            longitude:req.body.longitude,
+            organ_size:req.body.organ_size
+            
          });
 
          
@@ -374,6 +407,8 @@ function makeArray(value) {
       history_mother:req.body.history_mother,
       history_sibling:req.body.history_sibling,
       donatedeath:req.body.donatedeath,
+      height:req.body.height,
+      weight:req.body.weight
     };
     User.findOne({aadhaar:req.body.submit}).then(function(foundUsers){
       if(foundUsers.length!=0){
@@ -432,7 +467,21 @@ function makeArray(value) {
             donatedeath:req.body.donatedeath,
             donate:req.body.donate,
             details:req.body.details,
-            storage:req.body.storage      
+            storage:req.body.storage,
+            wttime: req.body.wttime,
+            cpra:req.body.cpra,
+            priordonor:req.body.priordonor,
+            dist:req.body.dist,
+            paedstatus:req.body.paedstatus,
+            benefit:req.body.benefit,
+            urgency:req.body.urgency,
+            htmatch:req.body.htmatch,
+            traveff:req.body.traveff,
+            survival:req.body.survival,
+            renal_function:req.body.renal_function,
+            latitude:req.body.latitude,
+            longitude:req.body.longitude,
+            organ_size:req.body.organ_size   
   
      }
      Donor.updateOne({donorno:req.body.submit},editedDonor).then(function(){

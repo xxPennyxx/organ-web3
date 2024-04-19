@@ -20,3 +20,8 @@
 9. Make sure you have a `.env` file in the same directory as `index.js`. Use this file to store the sender address and contract address and use it in the `index.js`. 
 10. Then run `node index.js` (or `nodemon index.js`) and click on http://localhost:3000
 11. Enjoy! ^_^
+
+### PRO TIP
+- If you are using Ganache CLI, make sure you run the following command to get it up and running on port 7545.
+`ganache-cli --port 7545`
+- If you are unable to deploy your smart contracts, try running `truffle migrate` on Command Prompt as admin.

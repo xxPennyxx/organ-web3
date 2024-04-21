@@ -212,7 +212,7 @@ function makeArray(value) {
                     gas: 6721975
                 }, function(error) {
                     if (!error) {
-                        console.log("Done");
+                        // console.log("Done");
                     } else {
                         res.redirect("/register");
                     }
@@ -265,7 +265,8 @@ function makeArray(value) {
       if(!(foundItems)){
       res.redirect("/login");
       }
-        else{console.log(foundItems);
+        else{
+          // console.log(foundItems);
       currUsers.push(foundItems);
       res.redirect("/donor")
         }
@@ -292,7 +293,7 @@ function makeArray(value) {
                 gas: 6721975
             }, function(error) {
                 if (error) {
-                    console.log("Error");
+                    // console.log("Error");
                 } 
             });
 
@@ -306,7 +307,7 @@ function makeArray(value) {
                 gas: 6721975
             }, function(error) {
                 if (error) {
-                    console.log("Error");
+                    // console.log("Error");
                 } 
             });
 
@@ -414,7 +415,7 @@ function makeArray(value) {
       if(foundUsers.length!=0){
         User.updateOne({aadhaar:req.body.submit},editedUser).then(function(){
             User.findOne({aadhaar:req.body.aadhaar}).then(function(foundUser){
-              console.log(foundUser);
+              // console.log(foundUser);
               currUsers.push(foundUser);
               res.redirect("/donor");
             })

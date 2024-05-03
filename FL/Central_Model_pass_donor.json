@@ -1,0 +1,93 @@
+[
+    {
+        "id": 6037,
+        "blood_group": "A",
+        "tissue_type": "BB",
+        "latitude": 37.7749,
+        "longitude": -115.1398,
+        "organ_specific_data": {
+            "organ_size": "medium",
+            "height": 186,
+            "weight": 92
+        },
+        "organ_donated": "heart"
+    },
+    {
+        "id": 13955,
+        "blood_group": "B",
+        "tissue_type": "AB",
+        "latitude": 36.1699,
+        "longitude": -95.3698,
+        "organ_specific_data": {
+            "organ_size": "small",
+            "height": 155,
+            "weight": 66
+        },
+        "organ_donated": "lung"
+    },
+    {
+        "id": 1016,
+        "blood_group": "B",
+        "tissue_type": "BB",
+        "latitude": 41.8781,
+        "longitude": -95.3698,
+        "organ_specific_data": {
+            "organ_size": "large",
+            "height": 192,
+            "weight": 71
+        },
+        "organ_donated": "heart"
+    },
+    {
+        "id": 8341,
+        "blood_group": "B",
+        "tissue_type": "BB",
+        "latitude": 39.7392,
+        "longitude": -95.3698,
+        "organ_specific_data": {
+            "organ_size": "small",
+            "height": 180,
+            "weight": 93
+        },
+        "organ_donated": "kidney"
+    },
+    {
+        "id": 13756,
+        "blood_group": "AB",
+        "tissue_type": "AA",
+        "latitude": 37.7749,
+        "longitude": -87.6298,
+        "organ_specific_data": {
+            "organ_size": "small",
+            "height": 195,
+            "weight": 87
+        },
+        "organ_donated": "heart"
+    },
+    {
+        "id": 9656,
+        "blood_group": "B",
+        "tissue_type": "OO",
+        "latitude": 39.7392,
+        "longitude": -104.9903,
+        "organ_specific_data": {
+            "organ_size": "small",
+            "height": 171,
+            "weight": 80
+        },
+        "organ_donated": "liver"
+    },
+    {
+        "id": 557,
+        "blood_group": "B",
+        "tissue_type": "AA",
+        "latitude": 34.0522,
+        "longitude": -118.2437,
+        "organ_specific_data": {
+            "organ_size": "medium",
+            "height": 199,
+            "weight": 66
+        },
+        "organ_donated": "liver"
+    }
+]
